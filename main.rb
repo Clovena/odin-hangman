@@ -2,10 +2,22 @@
 
 require_relative 'lib/dictionary'
 
-dict = Dictionary.new
-my_word = dict.random_word
-puts my_word
-puts dict.mask_word(my_word)
+def guess_letter(guess, solution)
+  word_arr = solution.split('')
+  word_masked = Dictionary.new.mask_word(solution)
+  letter_indices = []
+
+  word_arr.each_with_index do |letter, index|
+    letter_indices << (index * 2) + 1 if letter == guess
+  end
+
+  letter_indices.each do |index|
+    word_masked[index] = guess.upcase
+  end
+  word_masked
+end
+
+puts guess_letter('e', 'healthier')
 
 # puts dict_arr.count
 

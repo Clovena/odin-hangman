@@ -8,12 +8,12 @@ class Dictionary
   end
 
   def random_word
-    @dict[rand(0..@dict.length)]
+    @dict[rand(0..@dict.length)].chomp
   end
 
   def mask_word(word)
     masked = ''
-    (word.length - 1).times { masked << ' -' }
+    word.length.times { masked << ' -' }
     masked
   end
 end
