@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
-dict_arr = IO.readlines("#{__dir__}/dictionary.txt")
-dict_valid = dict_arr.select do |word|
-  word.strip.length.between?(5, 12)
-end
-random_word = dict_valid[rand(0..dict_valid.length)]
+require_relative 'lib/dictionary'
 
-puts random_word
+dict = Dictionary.new
+my_word = dict.random_word
+puts my_word
+puts dict.mask_word(my_word)
 
 # puts dict_arr.count
 
