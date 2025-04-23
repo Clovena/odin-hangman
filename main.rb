@@ -1,23 +1,47 @@
 # frozen_string_literal: true
 
 require_relative 'lib/dictionary'
+require_relative 'lib/output'
 
-def guess_letter(guess, solution)
-  word_arr = solution.split('')
-  word_masked = Dictionary.new.mask_word(solution)
-  letter_indices = []
+# Class for instances of a Hangman game
+class Game
+  attr_reader :solution
 
-  word_arr.each_with_index do |letter, index|
-    letter_indices << (index * 2) + 1 if letter == guess
+  def initialize
+    @dict = Dictionary.new
+    @solution = @dict.random_word
+    @solution_arr = @solution.split('')
+    @solution_masked = Output.mask_word(@solution)
   end
 
-  letter_indices.each do |index|
-    word_masked[index] = guess.upcase
+  def check_letter(guess)
+    @solution_arr.include? guess
   end
-  word_masked
+
+  def unmask_letter(guess)
+    letter_indices = []
+    @solution_arr.each_with_index do |letter, index|
+      letter_indices << (index * 2) + 1 if letter == guess
+    end
+    letter_indices.each do |index|
+      @solution_masked[index] = guess.upcase
+    end
+  end
+
+  def guess_letter(guess)
+    if check_letter(guess)
+      puts 'Nice guess!'
+      unmask_letter(guess)
+    else
+      puts "No #{guess}! Guess again."
+    end
+    puts @solution_masked
+  end
 end
 
-puts guess_letter('e', 'healthier')
+hangman = Game.new
+puts hangman.solution
+puts hangman.guess_letter('e')
 
 # puts dict_arr.count
 

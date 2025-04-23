@@ -1,4 +1,4 @@
-# frozen_string_literal: false
+# frozen_string_literal: true
 
 # Hangman Dictionary, for storing and generating words
 class Dictionary
@@ -9,11 +9,5 @@ class Dictionary
 
   def random_word
     @dict[rand(0..@dict.length)].chomp
-  end
-
-  def mask_word(word)
-    masked = ''
-    word.length.times { masked << ' -' }
-    masked
   end
 end
