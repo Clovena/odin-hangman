@@ -8,9 +8,8 @@ hangman = Game.new
 puts hangman.solution
 puts hangman.guess_letter until hangman.turns_rem <= 0
 
-# puts dict_arr.count
-
-# dict.lineno = rand(1..dict_arr.count)
-# puts dict.pos
-# word = dict.gets
-# puts word
+# Next steps:
+# Track guesses made
+# Block a guess if it's already been made
+# Escape game if word is solved
+# Serialize
