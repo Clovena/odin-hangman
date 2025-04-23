@@ -7,7 +7,6 @@ class Game
   def initialize
     @dict = Dictionary.new
     @solution = @dict.random_word
-    @solution_arr = @solution.split('')
     @solution_masked = Output.mask_word(@solution)
     @turns_rem = 8
   end
@@ -21,10 +20,10 @@ class Game
 
   def guess_letter
     guess = prompt_guess
-    if @solution_arr.include? guess
+    if @solution.include? guess
       puts 'Good guess!'
       @solution_masked = Output.unmask_letter(
-        guess, @solution_masked, @solution_arr
+        guess, @solution, @solution_masked
       )
     else
       puts "No #{guess}..."

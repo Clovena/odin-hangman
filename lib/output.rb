@@ -8,9 +8,9 @@ module Output
     masked
   end
 
-  def self.unmask_letter(guess, solution_masked, solution_arr)
+  def self.unmask_letter(guess, solution, solution_masked)
     letter_indices = []
-    solution_arr.each_with_index do |letter, index|
+    solution.split('').each_with_index do |letter, index|
       letter_indices << (index * 2) + 1 if letter == guess
     end
     letter_indices.each do |index|
