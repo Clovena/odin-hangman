@@ -2,36 +2,30 @@
 
 # Class for instances of a Hangman game
 class Game
-  attr_reader :solution
+  attr_reader :solution, :turns_rem
 
   def initialize
     @dict = Dictionary.new
     @solution = @dict.random_word
     @solution_arr = @solution.split('')
     @solution_masked = Output.mask_word(@solution)
+    @turns_rem = 8
   end
 
   def prompt_guess
+    @turns_rem -= 1
+    puts @turns_rem
     puts 'Guess a letter: '
     gets.chomp.to_s[0]
   end
 
-  def unmask_letter(guess)
-    letter_indices = []
-    @solution_arr.each_with_index do |letter, index|
-      letter_indices << (index * 2) + 1 if letter == guess
-    end
-    letter_indices.each do |index|
-      @solution_masked[index] = guess.upcase
-    end
-  end
-
   def guess_letter
     guess = prompt_guess
-
     if @solution_arr.include? guess
-      puts 'Nice guess!'
-      unmask_letter(guess)
+      puts 'Good guess!'
+      @solution_masked = Output.unmask_letter(
+        guess, @solution_masked, @solution_arr
+      )
     else
       puts "No #{guess}..."
     end
