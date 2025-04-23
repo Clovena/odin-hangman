@@ -6,7 +6,7 @@ require_relative 'lib/output'
 
 hangman = Game.new
 puts hangman.solution
-puts hangman.guess_letter
+puts hangman.guess_letter until hangman.turns_rem <= 0
 
 # puts dict_arr.count
 
