@@ -37,6 +37,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  json (~> 2.10)
   rubocop (~> 1.75)
 
 BUNDLED WITH
