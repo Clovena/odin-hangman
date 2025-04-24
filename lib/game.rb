@@ -23,8 +23,7 @@ class Game
     guess
   end
 
-  def guess_letter
-    guess = prompt_guess
+  def handle_guess(guess)
     if @solution.include?(guess)
       puts "\nGood guess!"
       @solution_masked = Output.unmask_letter(guess, @solution, @solution_masked)
@@ -32,6 +31,11 @@ class Game
       puts "\nNo #{guess} ..."
       @turns_rem -= 1
     end
+  end
+
+  def guess_letter
+    guess = prompt_guess
+    handle_guess(guess)
     @guesses << guess
     puts @solution_masked
   end
