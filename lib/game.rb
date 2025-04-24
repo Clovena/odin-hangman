@@ -15,6 +15,9 @@ class Game
 
   def play
     puts 'Welcome to Hangman!'
+    puts 'To load a game, type \'load\'.'
+    puts 'To save a game in progress, type \'save\'.'
+    puts 'Otherwise, start a new game below:'
     puts @solution_masked
     puts guess_letter until game_over? || @saved
   end
