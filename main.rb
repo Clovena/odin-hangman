@@ -7,4 +7,3 @@ require_relative 'lib/output'
 
 hangman = Game.new
 hangman.play
-# puts hangman.save_game
