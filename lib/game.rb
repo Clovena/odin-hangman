@@ -12,6 +12,20 @@ class Game
     @guesses = []
   end
 
+  def play
+    puts 'Welcome to Hangman!'
+    puts @solution_masked
+    puts guess_letter until @turns_rem <= 0
+  end
+
+  def guess_letter
+    guess = prompt_guess
+    handle_guess(guess)
+    @guesses << guess
+    puts "Letters guessed: #{Output.format_guesses(@guesses)}"
+    puts @solution_masked
+  end
+
   def prompt_guess
     puts "#{@turns_rem} incorrect guesses left."
     puts 'Guess a letter: '
@@ -31,18 +45,5 @@ class Game
       puts "\nNo #{guess} ..."
       @turns_rem -= 1
     end
-  end
-
-  def guess_letter
-    guess = prompt_guess
-    handle_guess(guess)
-    @guesses << guess
-    puts @solution_masked
-  end
-
-  def play
-    puts 'Welcome to Hangman!'
-    puts @solution_masked
-    puts guess_letter until @turns_rem <= 0
   end
 end

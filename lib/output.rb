@@ -18,4 +18,8 @@ module Output
     end
     solution_masked
   end
+
+  def self.format_guesses(guesses)
+    guesses.uniq.join(' ')
+  end
 end
