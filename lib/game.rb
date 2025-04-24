@@ -15,7 +15,18 @@ class Game
   def play
     puts 'Welcome to Hangman!'
     puts @solution_masked
-    puts guess_letter until @turns_rem <= 0
+    puts guess_letter until game_over?
+  end
+
+  def game_over?
+    if @turns_rem <= 0
+      puts 'No more guesses ... game over.'
+      return true
+    elsif !(@solution_masked.include? '-')
+      puts 'Congratulations! You win!'
+      return true
+    end
+    false
   end
 
   def guess_letter
