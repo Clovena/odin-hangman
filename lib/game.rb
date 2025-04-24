@@ -12,10 +12,22 @@ class Game
     @guesses = []
   end
 
+  def save_game
+    filename = "save/#{Output.random_filename}.json"
+    game_data = JSON.dump({
+                            solution: @solution,
+                            solution_masked: @solution_masked,
+                            turns_rem: @turns_rem,
+                            guesses: @guesses
+                          })
+    File.open(filename, 'w') { |f| f.write(game_data) }
+    puts "Game saved to #{filename}."
+  end
+
   def play
     puts 'Welcome to Hangman!'
     puts @solution_masked
-    puts guess_letter until game_over?
+    puts guess_letter until game_over? || saved?
   end
 
   def game_over?
