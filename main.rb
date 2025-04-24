@@ -5,8 +5,8 @@ require_relative 'lib/dictionary'
 require_relative 'lib/output'
 
 hangman = Game.new
-puts hangman.solution
-puts hangman.guess_letter until hangman.turns_rem <= 0
+hangman.play
+# puts hangman.solution
 
 # Next steps:
 # Track guesses made

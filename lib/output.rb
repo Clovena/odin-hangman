@@ -14,7 +14,7 @@ module Output
       letter_indices << (index * 2) + 1 if letter == guess
     end
     letter_indices.each do |index|
-      solution_masked[index] = guess.upcase
+      solution_masked[index] = guess
     end
     solution_masked
   end

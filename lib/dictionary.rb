@@ -8,6 +8,6 @@ class Dictionary
   end
 
   def random_word
-    @dict[rand(0..@dict.length)].chomp
+    @dict[rand(0..@dict.length)].chomp.upcase
   end
 end
